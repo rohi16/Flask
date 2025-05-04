@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory, render_template
+from flask import Flask, render_template, send_from_directory
 import os
 
 app = Flask(__name__)
@@ -9,7 +9,9 @@ def home():
 
 @app.route('/download')
 def download():
-    return send_from_directory('products', 'your-ebook.pdf', as_attachment=True)
+    directory = os.path.join(app.root_path, 'products')
+    filename = 'Flask-Store.pdf'  # Change to your actual file name
+    return send_from_directory(directory=directory, path=filename, as_attachment=True)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=10000)
