@@ -10,7 +10,7 @@ def home():
 @app.route('/download')
 def download():
     directory = os.path.join(app.root_path, 'products')
-    filename = 'Flask-Store.pdf'  # Change to your actual file name
+    filename = 'Flask-Store.pdf'  # Make sure the file is named exactly this
     return send_from_directory(directory=directory, path=filename, as_attachment=True)
 
 if __name__ == "__main__":
