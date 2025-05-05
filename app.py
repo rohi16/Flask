@@ -1,17 +1,25 @@
-from flask import Flask, render_template, send_from_directory
-import os
+from flask import Flask, send_file
 
 app = Flask(__name__)
 
+# Route to show the "Coming Soon" message
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return '''
+    <h2>Welcome to Our eBook Page!</h2>
+    <p>The eBook is coming soon. Check back later!</p>
+    '''
 
-@app.route('/download')
-def download():
-    directory = os.path.join(app.root_path, 'products')
-    filename = 'Flask-Store.pdf'  # Make sure the file is named exactly this
-    return send_from_directory(directory=directory, path=filename, as_attachment=True)
+# Route for downloading the real eBook (update when you're ready)
+@app.route('/download_ebook')
+def download_ebook():
+    # For now, it's a placeholder message.
+    return "The eBook will be available soon. Stay tuned!"
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=10000)
+# Uncomment below code when you're ready to serve the real eBook
+# @app.route('/download_ebook')
+# def download_ebook():
+#     return send_file('static/real_ebook.pdf', as_attachment=True)
+
+if __name__ == '__main__':
+    app.run(debug=True)
